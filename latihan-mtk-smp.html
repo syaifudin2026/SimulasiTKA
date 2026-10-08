@@ -1,0 +1,2759 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz TKA Matematika SMP</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet">
+
+    <style>
+
+        body {
+            background: linear-gradient(
+                135deg,
+                #eef5ff,
+                #fff8e6
+            );
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        .quiz-card {
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.10);
+
+            margin-bottom: 25px;
+        }
+
+
+        .logo-box {
+
+            width: 90px;
+            height: 90px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            background: #f1f5f9;
+        }
+
+
+        .logo-box img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        .answer-option {
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            padding: 14px 16px;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+        }
+
+
+        .answer-option:hover {
+
+            border-color: #0d6efd;
+
+            background: #f0f7ff;
+        }
+
+
+        .answer-option:has(
+            input:checked
+        ) {
+
+            border-color: #0d6efd;
+
+            background: #eaf3ff;
+        }
+
+
+        .answer-option label {
+
+            cursor: pointer;
+        }
+
+
+        .question-box {
+
+            background: #f8fafc;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            border-left: 5px solid #0d6efd;
+        }
+
+
+        .progress {
+
+            height: 10px;
+
+            border-radius: 20px;
+        }
+
+
+        .result-score {
+
+            font-size: 70px;
+
+            font-weight: bold;
+
+            color: #0d6efd;
+        }
+
+
+        .hidden {
+
+            display: none !important;
+        }
+
+
+        .statement-box {
+
+            border: 1px solid #dee2e6;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            margin-bottom: 15px;
+
+            background: #ffffff;
+        }
+
+
+        @media (max-width: 576px) {
+
+            .quiz-card {
+
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .result-score {
+
+                font-size: 55px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container py-4">
+
+    <!-- ================================================= -->
+    <!-- HALAMAN IDENTITAS -->
+    <!-- ================================================= -->
+
+    <div id="halamanIdentitas">
+
+        <div class="quiz-card">
+
+            <div class="text-center mb-4">
+
+                <div class="logo-box">
+
+                    <img
+                        src="assets/logo.png"
+                        alt="Logo Sekolah"
+                        onerror="this.style.display='none'">
+
+                </div>
+
+
+                <h1 class="fw-bold text-primary mt-3">
+
+                    <i class="fa-solid fa-calculator"></i>
+
+                    Quiz TKA Matematika SMP
+
+                </h1>
+
+
+                <p class="text-muted">
+
+                    Tes Kemampuan Akademik –
+                    Matematika Jenjang SMP
+
+                </p>
+
+            </div>
+
+
+            <div class="alert alert-info">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Silakan isi identitas sebelum memulai quiz.
+
+            </div>
+
+
+            <form id="formIdentitas">
+
+                <!-- Nama -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label fw-bold">
+
+                        Nama Siswa
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        class="form-control form-control-lg"
+                        placeholder="Masukkan nama lengkap"
+                        required>
+
+                </div>
+
+
+                <!-- Sekolah -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label fw-bold">
+
+                        Asal Sekolah
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sekolah"
+                        class="form-control form-control-lg"
+                        placeholder="Contoh: SMPN 1 Contoh"
+                        required>
+
+                </div>
+
+
+                <!-- Kelas -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label fw-bold">
+
+                        Kelas
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="kelas"
+                        class="form-control form-control-lg"
+                        placeholder="Contoh: IX-B"
+                        required>
+
+                </div>
+
+
+                <!-- Nomor -->
+
+                <div class="mb-4">
+
+                    <label
+                        class="form-label fw-bold">
+
+                        Nomor Peserta
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nomor"
+                        class="form-control form-control-lg"
+                        placeholder="Opsional">
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-lg w-100">
+
+                    <i class="fa-solid fa-play"></i>
+
+                    Mulai Quiz
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="text-center text-muted small">
+
+            Quiz TKA Matematika SMP
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- HALAMAN QUIZ -->
+    <!-- ================================================= -->
+
+    <div
+        id="halamanQuiz"
+        class="hidden">
+
+        <div class="quiz-card">
+
+            <!-- Header -->
+
+            <div class="d-flex
+                        justify-content-between
+                        align-items-center
+                        flex-wrap
+                        gap-2
+                        mb-3">
+
+                <div>
+
+                    <h4
+                        id="judulQuiz"
+                        class="fw-bold text-primary mb-1">
+
+                        Quiz TKA Matematika SMP
+
+                    </h4>
+
+                    <div
+                        class="text-muted">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span id="namaTampil"></span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="badge bg-primary fs-6 p-2">
+
+                    <span id="nomorSoal">
+                        1
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Progress -->
+
+            <div class="progress mb-4">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                    style="width: 0%">
+
+                </div>
+
+            </div>
+
+
+            <!-- Petunjuk -->
+
+            <div
+                id="petunjuk"
+                class="alert alert-warning small">
+
+            </div>
+
+
+            <!-- Soal -->
+
+            <div class="question-box mb-4">
+
+                <h5
+                    id="pertanyaan"
+                    class="fw-bold mb-0">
+
+                </h5>
+
+            </div>
+
+
+            <!-- Jawaban -->
+
+            <div id="containerJawaban">
+
+            </div>
+
+
+            <!-- Navigasi -->
+
+            <div
+                class="d-flex
+                       justify-content-between
+                       mt-4
+                       gap-2">
+
+                <button
+                    id="btnSebelumnya"
+                    type="button"
+                    class="btn btn-outline-secondary">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Sebelumnya
+
+                </button>
+
+
+                <button
+                    id="btnBerikutnya"
+                    type="button"
+                    class="btn btn-primary">
+
+                    Berikutnya
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <button
+                    id="btnSelesai"
+                    type="button"
+                    class="btn btn-success hidden">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Selesai
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- HALAMAN HASIL -->
+    <!-- ================================================= -->
+
+    <div
+        id="halamanHasil"
+        class="hidden">
+
+        <div class="quiz-card text-center">
+
+            <div class="mb-3">
+
+                <i
+                    class="fa-solid fa-circle-check text-success"
+                    style="font-size:70px">
+
+                </i>
+
+            </div>
+
+
+            <h2 class="fw-bold">
+
+                Quiz Selesai
+
+            </h2>
+
+
+            <p class="text-muted">
+
+                Berikut hasil pengerjaan:
+
+            </p>
+
+
+            <div
+                id="hasilNama"
+                class="fw-bold fs-5">
+
+            </div>
+
+
+            <div
+                id="hasilSekolah"
+                class="text-muted">
+
+            </div>
+
+
+            <div
+                id="hasilKelas"
+                class="text-muted mb-3">
+
+            </div>
+
+
+            <div class="result-score">
+
+                <span id="nilaiAkhir">
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="statusHasil"
+                class="badge fs-5 p-2 mb-4">
+
+            </div>
+
+
+            <div
+                class="row
+                       g-3
+                       text-start
+                       mb-4">
+
+                <div class="col-md-4">
+
+                    <div class="border rounded p-3">
+
+                        <div class="text-muted small">
+                            Skor
+                        </div>
+
+                        <strong id="skorHasil">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="border rounded p-3">
+
+                        <div class="text-muted small">
+                            Skor Maksimal
+                        </div>
+
+                        <strong id="maksimalHasil">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="border rounded p-3">
+
+                        <div class="text-muted small">
+                            KKM
+                        </div>
+
+                        <strong id="kkmHasil">
+                            70
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="d-grid gap-2">
+
+                <button
+                    id="btnUlangi"
+                    class="btn btn-primary btn-lg">
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Ulangi Quiz
+
+                </button>
+
+
+                <button
+                    id="btnBeranda"
+                    class="btn btn-outline-secondary">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Kembali
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="text-center text-muted small">
+
+            Rangkuman Materi Tes Kemampuan Akademik (TKA)
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   DATA QUIZ
+   ========================================================= */
+
+const DATA_QUIZ = {
+
+    judul: "Quiz TKA Matematika SMP",
+
+    mapel: "Matematika",
+
+    jenjang: "SMP",
+
+    kkm: 70,
+
+    acak_soal: true,
+
+    acak_opsi: true,
+
+    soal: [
+
+        {
+            id: 1,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Hasil dari (-18) + 25 - (-7) adalah ...",
+
+            opsi: [
+                "10",
+                "14",
+                "18",
+                "24"
+            ],
+
+            jawaban: "14"
+        },
+
+
+        {
+            id: 2,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Bilangan yang paling besar di antara bilangan berikut adalah ...",
+
+            opsi: [
+                "-0,75",
+                "-2/3",
+                "-0,6",
+                "-5/8"
+            ],
+
+            jawaban: "-0,6"
+        },
+
+
+        {
+            id: 3,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Hasil dari 48 ÷ (-6) + 15 × 2 adalah ...",
+
+            opsi: [
+                "22",
+                "24",
+                "26",
+                "28"
+            ],
+
+            jawaban: "22"
+        },
+
+
+        {
+            id: 4,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Tanpa menghitung secara tepat, hasil 398 × 51 paling dekat dengan ...",
+
+            opsi: [
+                "18.000",
+                "20.000",
+                "22.000",
+                "24.000"
+            ],
+
+            jawaban: "20.000"
+        },
+
+
+        {
+            id: 5,
+
+            tipe: "pilihan_ganda_kompleks",
+
+            pertanyaan:
+                "Pilih semua pernyataan yang benar.",
+
+            opsi: [
+                "2³ × 2² = 2⁵",
+                "3² × 3³ = 3⁶",
+                "5⁴ ÷ 5² = 5²",
+                "7³ ÷ 7 = 7²"
+            ],
+
+            jawaban: [
+                "2³ × 2² = 2⁵",
+                "5⁴ ÷ 5² = 5²",
+                "7³ ÷ 7 = 7²"
+            ]
+        },
+
+
+        {
+            id: 6,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Faktorisasi prima dari 360 adalah ...",
+
+            opsi: [
+                "2³ × 3² × 5",
+                "2² × 3² × 5",
+                "2³ × 3 × 5²",
+                "2 × 3² × 5²"
+            ],
+
+            jawaban: "2³ × 3² × 5"
+        },
+
+
+        {
+            id: 7,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah peta memiliki skala 1 : 250.000. Jika jarak dua kota pada peta adalah 6 cm, jarak sebenarnya adalah ...",
+
+            opsi: [
+                "1,5 km",
+                "15 km",
+                "150 km",
+                "1.500 km"
+            ],
+
+            jawaban: "15 km"
+        },
+
+
+        {
+            id: 8,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Untuk membuat 12 kue diperlukan 300 gram tepung. Dengan perbandingan yang sama, tepung yang diperlukan untuk membuat 30 kue adalah ...",
+
+            opsi: [
+                "600 gram",
+                "700 gram",
+                "750 gram",
+                "900 gram"
+            ],
+
+            jawaban: "750 gram"
+        },
+
+
+        {
+            id: 9,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah pekerjaan dapat diselesaikan 8 pekerja dalam 15 hari. Jika jumlah pekerja menjadi 12 orang dengan kemampuan yang sama, pekerjaan tersebut diperkirakan selesai dalam ...",
+
+            opsi: [
+                "8 hari",
+                "10 hari",
+                "12 hari",
+                "15 hari"
+            ],
+
+            jawaban: "10 hari"
+        },
+
+
+        {
+            id: 10,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Nilai x yang memenuhi persamaan 3x + 7 = 25 adalah ...",
+
+            opsi: [
+                "4",
+                "5",
+                "6",
+                "7"
+            ],
+
+            jawaban: "6"
+        },
+
+
+        {
+            id: 11,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Umur ayah 4 kali umur anaknya. Jumlah umur mereka 50 tahun. Umur anak adalah ...",
+
+            opsi: [
+                "8 tahun",
+                "10 tahun",
+                "12 tahun",
+                "14 tahun"
+            ],
+
+            jawaban: "10 tahun"
+        },
+
+
+        {
+            id: 12,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Himpunan penyelesaian dari 2x - 5 > 9 adalah ...",
+
+            opsi: [
+                "x > 2",
+                "x > 5",
+                "x > 7",
+                "x > 9"
+            ],
+
+            jawaban: "x > 7"
+        },
+
+
+        {
+            id: 13,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Harga 2 buku dan 3 pensil adalah Rp21.000. Harga 1 buku dan 2 pensil adalah Rp13.000. Harga satu buku adalah ...",
+
+            opsi: [
+                "Rp3.000",
+                "Rp5.000",
+                "Rp7.000",
+                "Rp9.000"
+            ],
+
+            jawaban: "Rp3.000"
+        },
+
+
+        {
+            id: 14,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Bentuk sederhana dari 3(2x - 4) + 2(x + 5) adalah ...",
+
+            opsi: [
+                "8x - 2",
+                "8x + 2",
+                "6x + 10",
+                "4x + 2"
+            ],
+
+            jawaban: "8x - 2"
+        },
+
+
+        {
+            id: 15,
+
+            tipe: "pilihan_ganda_kompleks",
+
+            pertanyaan:
+                "Pilih semua pernyataan yang benar tentang operasi bentuk aljabar.",
+
+            opsi: [
+                "a + b = b + a",
+                "(a + b) + c = a + (b + c)",
+                "a(b + c) = ab + ac",
+                "a - b = b - a"
+            ],
+
+            jawaban: [
+                "a + b = b + a",
+                "(a + b) + c = a + (b + c)",
+                "a(b + c) = ab + ac"
+            ]
+        },
+
+
+        {
+            id: 16,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Diketahui fungsi f(x) = 2x + 3. Nilai f(5) adalah ...",
+
+            opsi: [
+                "10",
+                "11",
+                "13",
+                "15"
+            ],
+
+            jawaban: "13"
+        },
+
+
+        {
+            id: 17,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Diketahui A = {1, 2, 3} dan B = {2, 4, 6}. Relasi dari A ke B adalah setiap anggota A dipasangkan dengan dua kalinya. Range relasi tersebut adalah ...",
+
+            opsi: [
+                "{1, 2, 3}",
+                "{2, 4, 6}",
+                "{1, 4, 9}",
+                "{2, 3, 6}"
+            ],
+
+            jawaban: "{2, 4, 6}"
+        },
+
+
+        {
+            id: 18,
+
+            tipe: "benar_salah_kompleks",
+
+            pertanyaan:
+                "Tentukan Benar atau Salah untuk setiap pernyataan berikut.",
+
+            pernyataan: [
+
+                {
+                    teks:
+                        "Domain adalah himpunan asal dalam suatu fungsi.",
+
+                    jawaban:
+                        "Benar"
+                },
+
+                {
+                    teks:
+                        "Kodomain selalu sama dengan range.",
+
+                    jawaban:
+                        "Salah"
+                },
+
+                {
+                    teks:
+                        "Range adalah himpunan hasil pemetaan.",
+
+                    jawaban:
+                        "Benar"
+                }
+
+            ]
+        },
+
+
+        {
+            id: 19,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Suku berikutnya dari barisan 4, 7, 10, 13, ... adalah ...",
+
+            opsi: [
+                "15",
+                "16",
+                "17",
+                "18"
+            ],
+
+            jawaban: "16"
+        },
+
+
+        {
+            id: 20,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Jumlah 10 suku pertama barisan 2, 5, 8, 11, ... adalah ...",
+
+            opsi: [
+                "145",
+                "150",
+                "155",
+                "160"
+            ],
+
+            jawaban: "155"
+        },
+
+
+        {
+            id: 21,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Dua garis berpotongan membentuk salah satu sudut 65°. Besar sudut yang bertolak belakang dengan sudut tersebut adalah ...",
+
+            opsi: [
+                "25°",
+                "65°",
+                "115°",
+                "180°"
+            ],
+
+            jawaban: "65°"
+        },
+
+
+        {
+            id: 22,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Dua garis sejajar dipotong sebuah garis transversal. Jika salah satu sudut sehadap besarnya 70°, maka sudut sehadap lainnya adalah ...",
+
+            opsi: [
+                "70°",
+                "90°",
+                "110°",
+                "180°"
+            ],
+
+            jawaban: "70°"
+        },
+
+
+        {
+            id: 23,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah segitiga memiliki dua sudut masing-masing 45° dan 65°. Besar sudut ketiga adalah ...",
+
+            opsi: [
+                "60°",
+                "70°",
+                "80°",
+                "90°"
+            ],
+
+            jawaban: "70°"
+        },
+
+
+        {
+            id: 24,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah segitiga siku-siku memiliki sisi siku-siku 9 cm dan 12 cm. Panjang sisi miringnya adalah ...",
+
+            opsi: [
+                "13 cm",
+                "14 cm",
+                "15 cm",
+                "16 cm"
+            ],
+
+            jawaban: "15 cm"
+        },
+
+
+        {
+            id: 25,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Dua segitiga sebangun. Sisi pada segitiga pertama yang panjangnya 8 cm bersesuaian dengan sisi 12 cm pada segitiga kedua. Jika sisi lain pada segitiga pertama 10 cm, panjang sisi yang bersesuaian pada segitiga kedua adalah ...",
+
+            opsi: [
+                "12 cm",
+                "15 cm",
+                "16 cm",
+                "18 cm"
+            ],
+
+            jawaban: "15 cm"
+        },
+
+
+        {
+            id: 26,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Manakah yang merupakan jaring-jaring tabung?",
+
+            opsi: [
+                "Satu persegi dan dua lingkaran",
+                "Satu persegi panjang dan dua lingkaran",
+                "Empat segitiga dan satu persegi",
+                "Enam persegi yang sama besar"
+            ],
+
+            jawaban: "Satu persegi panjang dan dua lingkaran"
+        },
+
+
+        {
+            id: 27,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Titik A(3, -2) ditranslasikan 4 satuan ke kiri dan 5 satuan ke atas. Koordinat bayangan A adalah ...",
+
+            opsi: [
+                "(-1, 3)",
+                "(7, 3)",
+                "(-1, -7)",
+                "(7, -7)"
+            ],
+
+            jawaban: "(-1, 3)"
+        },
+
+
+        {
+            id: 28,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Titik P(4, -3) direfleksikan terhadap sumbu-X. Koordinat bayangan P adalah ...",
+
+            opsi: [
+                "(-4, -3)",
+                "(-4, 3)",
+                "(4, 3)",
+                "(3, 4)"
+            ],
+
+            jawaban: "(4, 3)"
+        },
+
+
+        {
+            id: 29,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah persegi memiliki sisi 14 cm. Di dalamnya terdapat lingkaran yang diameternya sama dengan sisi persegi. Jika π = 22/7, luas daerah persegi yang tidak tertutup lingkaran adalah ...",
+
+            opsi: [
+                "42 cm²",
+                "49 cm²",
+                "56 cm²",
+                "84 cm²"
+            ],
+
+            jawaban: "42 cm²"
+        },
+
+
+        {
+            id: 30,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah prisma memiliki luas alas 30 cm² dan tinggi 12 cm. Volume prisma tersebut adalah ...",
+
+            opsi: [
+                "180 cm³",
+                "240 cm³",
+                "360 cm³",
+                "420 cm³"
+            ],
+
+            jawaban: "360 cm³"
+        },
+
+
+        {
+            id: 31,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah limas memiliki luas alas 48 cm² dan tinggi 10 cm. Volume limas tersebut adalah ...",
+
+            opsi: [
+                "120 cm³",
+                "160 cm³",
+                "240 cm³",
+                "480 cm³"
+            ],
+
+            jawaban: "160 cm³"
+        },
+
+
+        {
+            id: 32,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah bola memiliki jari-jari 3 cm. Jika π = 3,14, volume bola tersebut kira-kira adalah ...",
+
+            opsi: [
+                "56,52 cm³",
+                "84,78 cm³",
+                "113,04 cm³",
+                "169,56 cm³"
+            ],
+
+            jawaban: "113,04 cm³"
+        },
+
+
+        {
+            id: 33,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Seorang siswa ingin mengetahui jenis transportasi yang digunakan teman-temannya untuk pergi ke sekolah. Pertanyaan yang paling tepat untuk mengumpulkan data adalah ...",
+
+            opsi: [
+                "Berapa umur kamu?",
+                "Apa warna kesukaanmu?",
+                "Apa transportasi yang kamu gunakan untuk pergi ke sekolah?",
+                "Berapa nilai matematika kamu?"
+            ],
+
+            jawaban:
+                "Apa transportasi yang kamu gunakan untuk pergi ke sekolah?"
+        },
+
+
+        {
+            id: 34,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Data nilai lima siswa adalah 70, 75, 80, 85, dan 90. Rata-rata nilai tersebut adalah ...",
+
+            opsi: [
+                "75",
+                "80",
+                "85",
+                "90"
+            ],
+
+            jawaban: "80"
+        },
+
+
+        {
+            id: 35,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Data berikut adalah 6, 7, 7, 8, 9, 10, 12. Median dari data tersebut adalah ...",
+
+            opsi: [
+                "7",
+                "8",
+                "9",
+                "10"
+            ],
+
+            jawaban: "8"
+        },
+
+
+        {
+            id: 36,
+
+            tipe: "pilihan_ganda_kompleks",
+
+            pertanyaan:
+                "Perhatikan data A: 5, 6, 6, 7, 8 dan data B: 3, 5, 7, 9, 10. Pilih semua pernyataan yang benar.",
+
+            opsi: [
+                "Modus data A adalah 6.",
+                "Range data A adalah 3.",
+                "Range data B adalah 7.",
+                "Median data B adalah 7."
+            ],
+
+            jawaban: [
+                "Modus data A adalah 6.",
+                "Range data A adalah 3.",
+                "Range data B adalah 7.",
+                "Median data B adalah 7."
+            ]
+        },
+
+
+        {
+            id: 37,
+
+            tipe: "benar_salah_kompleks",
+
+            pertanyaan:
+                "Perhatikan dua kelompok data berikut. Kelompok A: 10, 10, 10, 10, 10. Kelompok B: 6, 8, 10, 12, 14. Tentukan Benar atau Salah.",
+
+            pernyataan: [
+
+                {
+                    teks:
+                        "Rata-rata kedua kelompok data sama-sama 10.",
+
+                    jawaban:
+                        "Benar"
+                },
+
+                {
+                    teks:
+                        "Jangkauan kelompok A lebih besar daripada kelompok B.",
+
+                    jawaban:
+                        "Salah"
+                },
+
+                {
+                    teks:
+                        "Kelompok B memiliki penyebaran data lebih besar daripada kelompok A.",
+
+                    jawaban:
+                        "Benar"
+                },
+
+                {
+                    teks:
+                        "Kedua kelompok memiliki jumlah data yang sama.",
+
+                    jawaban:
+                        "Benar"
+                }
+
+            ]
+        },
+
+
+        {
+            id: 38,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah dadu bersisi enam dilempar satu kali. Peluang muncul mata dadu 4 adalah ...",
+
+            opsi: [
+                "1/2",
+                "1/4",
+                "1/6",
+                "1/12"
+            ],
+
+            jawaban: "1/6"
+        },
+
+
+        {
+            id: 39,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah kantong berisi 5 bola merah, 3 bola biru, dan 2 bola hijau. Jika satu bola diambil secara acak, peluang mendapatkan bola biru adalah ...",
+
+            opsi: [
+                "1/5",
+                "3/10",
+                "1/3",
+                "1/2"
+            ],
+
+            jawaban: "3/10"
+        },
+
+
+        {
+            id: 40,
+
+            tipe: "pilihan_ganda",
+
+            pertanyaan:
+                "Sebuah koin dilempar 50 kali dan muncul sisi angka sebanyak 27 kali. Frekuensi relatif muncul sisi angka adalah ...",
+
+            opsi: [
+                "27%",
+                "46%",
+                "54%",
+                "73%"
+            ],
+
+            jawaban: "54%"
+        }
+
+    ]
+
+};
+
+
+/* =========================================================
+   VARIABEL
+   ========================================================= */
+
+let daftarSoal = [];
+
+let jawabanSiswa = [];
+
+let nomorSoalSekarang = 0;
+
+let dataSiswa = {};
+
+
+/* =========================================================
+   FUNGSI ACAK
+   ========================================================= */
+
+function acakArray(array) {
+
+    const hasil = [...array];
+
+    for (
+        let i = hasil.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            hasil[i],
+            hasil[j]
+        ] =
+        [
+            hasil[j],
+            hasil[i]
+        ];
+    }
+
+    return hasil;
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(text) {
+
+    if (
+        text === null ||
+        text === undefined
+    ) {
+
+        return "";
+    }
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+/* =========================================================
+   FORM IDENTITAS
+   ========================================================= */
+
+document
+    .getElementById("formIdentitas")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            dataSiswa = {
+
+                nama:
+                    document
+                    .getElementById("nama")
+                    .value
+                    .trim(),
+
+                sekolah:
+                    document
+                    .getElementById("sekolah")
+                    .value
+                    .trim(),
+
+                kelas:
+                    document
+                    .getElementById("kelas")
+                    .value
+                    .trim(),
+
+                nomor:
+                    document
+                    .getElementById("nomor")
+                    .value
+                    .trim()
+            };
+
+
+            if (!dataSiswa.nama) {
+
+                alert(
+                    "Nama siswa wajib diisi."
+                );
+
+                return;
+            }
+
+
+            if (!dataSiswa.sekolah) {
+
+                alert(
+                    "Asal sekolah wajib diisi."
+                );
+
+                return;
+            }
+
+
+            if (!dataSiswa.kelas) {
+
+                alert(
+                    "Kelas wajib diisi."
+                );
+
+                return;
+            }
+
+
+            mulaiQuiz();
+        }
+    );
+
+
+/* =========================================================
+   MULAI QUIZ
+   ========================================================= */
+
+function mulaiQuiz() {
+
+    daftarSoal =
+        DATA_QUIZ.soal.map(
+            function(soal) {
+
+                const salinan = {
+                    ...soal
+                };
+
+
+                if (
+                    Array.isArray(
+                        soal.opsi
+                    )
+                ) {
+
+                    salinan.opsi =
+                        [
+                            ...soal.opsi
+                        ];
+                }
+
+
+                if (
+                    Array.isArray(
+                        soal.pernyataan
+                    )
+                ) {
+
+                    salinan.pernyataan =
+                        soal.pernyataan.map(
+                            function(item) {
+
+                                return {
+                                    ...item
+                                };
+                            }
+                        );
+                }
+
+
+                return salinan;
+            }
+        );
+
+
+    /* Acak soal */
+
+    if (
+        DATA_QUIZ.acak_soal
+    ) {
+
+        daftarSoal =
+            acakArray(
+                daftarSoal
+            );
+    }
+
+
+    /* Acak opsi */
+
+    if (
+        DATA_QUIZ.acak_opsi
+    ) {
+
+        daftarSoal.forEach(
+            function(soal) {
+
+                if (
+                    soal.tipe ===
+                    "pilihan_ganda" ||
+
+                    soal.tipe ===
+                    "pilihan_ganda_kompleks"
+                ) {
+
+                    soal.opsi =
+                        acakArray(
+                            soal.opsi
+                        );
+                }
+
+            }
+        );
+    }
+
+
+    /* Siapkan jawaban */
+
+    jawabanSiswa =
+        daftarSoal.map(
+            function(soal) {
+
+                if (
+                    soal.tipe ===
+                    "pilihan_ganda_kompleks"
+                ) {
+
+                    return [];
+                }
+
+
+                if (
+                    soal.tipe ===
+                    "benar_salah_kompleks"
+                ) {
+
+                    return [];
+                }
+
+
+                return null;
+            }
+        );
+
+
+    /* Tampilkan nama */
+
+    document
+        .getElementById("namaTampil")
+        .textContent =
+        dataSiswa.nama;
+
+
+    /* Pindah halaman */
+
+    document
+        .getElementById("halamanIdentitas")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("halamanQuiz")
+        .classList
+        .remove("hidden");
+
+
+    tampilkanSoal();
+}
+
+
+/* =========================================================
+   TAMPILKAN SOAL
+   ========================================================= */
+
+function tampilkanSoal() {
+
+    const soal =
+        daftarSoal[
+            nomorSoalSekarang
+        ];
+
+
+    if (!soal) {
+        return;
+    }
+
+
+    /* Nomor */
+
+    document
+        .getElementById("nomorSoal")
+        .textContent =
+        "Soal " +
+        (
+            nomorSoalSekarang + 1
+        ) +
+        " / " +
+        daftarSoal.length;
+
+
+    /* Pertanyaan */
+
+    document
+        .getElementById("pertanyaan")
+        .textContent =
+        soal.pertanyaan;
+
+
+    /* Progress */
+
+    const persen =
+        (
+            (
+                nomorSoalSekarang + 1
+            ) /
+            daftarSoal.length
+        ) *
+        100;
+
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        persen + "%";
+
+
+    /* Petunjuk */
+
+    let petunjuk = "";
+
+    if (
+        soal.tipe ===
+        "pilihan_ganda"
+    ) {
+
+        petunjuk =
+            "Pilih satu jawaban yang paling tepat.";
+
+    }
+
+    else if (
+        soal.tipe ===
+        "pilihan_ganda_kompleks"
+    ) {
+
+        petunjuk =
+            "Pilih semua jawaban yang benar.";
+
+    }
+
+    else if (
+        soal.tipe ===
+        "benar_salah_kompleks"
+    ) {
+
+        petunjuk =
+            "Tentukan Benar atau Salah untuk setiap pernyataan.";
+    }
+
+
+    document
+        .getElementById("petunjuk")
+        .textContent =
+        petunjuk;
+
+
+    /* Container */
+
+    const container =
+        document
+        .getElementById(
+            "containerJawaban"
+        );
+
+
+    container.innerHTML = "";
+
+
+    /* =====================================================
+       PILIHAN GANDA
+       ===================================================== */
+
+    if (
+        soal.tipe ===
+        "pilihan_ganda"
+    ) {
+
+        soal.opsi.forEach(
+            function(
+                opsi,
+                index
+            ) {
+
+                const id =
+                    "opsi_" +
+                    nomorSoalSekarang +
+                    "_" +
+                    index;
+
+
+                const checked =
+                    jawabanSiswa[
+                        nomorSoalSekarang
+                    ] === opsi
+                        ? "checked"
+                        : "";
+
+
+                container.insertAdjacentHTML(
+                    "beforeend",
+
+                    `
+                    <div class="form-check answer-option mb-3">
+
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="jawaban"
+                            id="${id}"
+                            value="${escapeHTML(opsi)}"
+                            ${checked}
+                        >
+
+                        <label
+                            class="form-check-label w-100"
+                            for="${id}"
+                        >
+
+                            <strong>
+                                ${String.fromCharCode(
+                                    65 + index
+                                )}.
+                            </strong>
+
+                            ${escapeHTML(opsi)}
+
+                        </label>
+
+                    </div>
+                    `
+                );
+            }
+        );
+
+
+        container
+            .querySelectorAll(
+                'input[name="jawaban"]'
+            )
+            .forEach(
+                function(input) {
+
+                    input.addEventListener(
+                        "change",
+                        function() {
+
+                            jawabanSiswa[
+                                nomorSoalSekarang
+                            ] =
+                            this.value;
+
+                        }
+                    );
+                }
+            );
+    }
+
+
+    /* =====================================================
+       PILIHAN GANDA KOMPLEKS
+       ===================================================== */
+
+    else if (
+        soal.tipe ===
+        "pilihan_ganda_kompleks"
+    ) {
+
+        const jawabanSebelumnya =
+            Array.isArray(
+                jawabanSiswa[
+                    nomorSoalSekarang
+                ]
+            )
+                ?
+                jawabanSiswa[
+                    nomorSoalSekarang
+                ]
+                :
+                [];
+
+
+        soal.opsi.forEach(
+            function(
+                opsi,
+                index
+            ) {
+
+                const id =
+                    "kompleks_" +
+                    nomorSoalSekarang +
+                    "_" +
+                    index;
+
+
+                const checked =
+                    jawabanSebelumnya
+                    .includes(opsi)
+                        ? "checked"
+                        : "";
+
+
+                container.insertAdjacentHTML(
+                    "beforeend",
+
+                    `
+                    <div class="form-check answer-option mb-3">
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="jawabanKompleks"
+                            id="${id}"
+                            value="${escapeHTML(opsi)}"
+                            ${checked}
+                        >
+
+                        <label
+                            class="form-check-label w-100"
+                            for="${id}"
+                        >
+
+                            <strong>
+                                ${String.fromCharCode(
+                                    65 + index
+                                )}.
+                            </strong>
+
+                            ${escapeHTML(opsi)}
+
+                        </label>
+
+                    </div>
+                    `
+                );
+            }
+        );
+
+
+        container
+            .querySelectorAll(
+                'input[name="jawabanKompleks"]'
+            )
+            .forEach(
+                function(input) {
+
+                    input.addEventListener(
+                        "change",
+                        function() {
+
+                            jawabanSiswa[
+                                nomorSoalSekarang
+                            ] =
+                            Array.from(
+                                container.querySelectorAll(
+                                    'input[name="jawabanKompleks"]:checked'
+                                )
+                            )
+                            .map(
+                                function(item) {
+
+                                    return item.value;
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+    }
+
+
+    /* =====================================================
+       BENAR SALAH KOMPLEKS
+       ===================================================== */
+
+    else if (
+        soal.tipe ===
+        "benar_salah_kompleks"
+    ) {
+
+        const jawabanSebelumnya =
+            Array.isArray(
+                jawabanSiswa[
+                    nomorSoalSekarang
+                ]
+            )
+                ?
+                jawabanSiswa[
+                    nomorSoalSekarang
+                ]
+                :
+                [];
+
+
+        soal.pernyataan.forEach(
+            function(
+                item,
+                index
+            ) {
+
+                const jawaban =
+                    jawabanSebelumnya[
+                        index
+                    ] || "";
+
+
+                container.insertAdjacentHTML(
+                    "beforeend",
+
+                    `
+                    <div class="statement-box">
+
+                        <div class="fw-semibold mb-3">
+
+                            ${index + 1}.
+
+                            ${escapeHTML(
+                                item.teks
+                            )}
+
+                        </div>
+
+
+                        <div class="d-flex gap-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="bs_${index}"
+                                    id="benar_${index}"
+                                    value="Benar"
+                                    ${jawaban === "Benar"
+                                        ? "checked"
+                                        : ""}
+                                >
+
+                                <label
+                                    class="form-check-label"
+                                    for="benar_${index}"
+                                >
+
+                                    <i class="fa-solid fa-check text-success"></i>
+
+                                    Benar
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="bs_${index}"
+                                    id="salah_${index}"
+                                    value="Salah"
+                                    ${jawaban === "Salah"
+                                        ? "checked"
+                                        : ""}
+                                >
+
+                                <label
+                                    class="form-check-label"
+                                    for="salah_${index}"
+                                >
+
+                                    <i class="fa-solid fa-xmark text-danger"></i>
+
+                                    Salah
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    `
+                );
+            }
+        );
+
+
+        container
+            .querySelectorAll(
+                'input[type="radio"]'
+            )
+            .forEach(
+                function(input) {
+
+                    input.addEventListener(
+                        "change",
+                        function() {
+
+                            const bagian =
+                                this.name.split("_");
+
+                            const index =
+                                parseInt(
+                                    bagian[1]
+                                );
+
+
+                            if (
+                                !Array.isArray(
+                                    jawabanSiswa[
+                                        nomorSoalSekarang
+                                    ]
+                                )
+                            ) {
+
+                                jawabanSiswa[
+                                    nomorSoalSekarang
+                                ] = [];
+                            }
+
+
+                            jawabanSiswa[
+                                nomorSoalSekarang
+                            ][index] =
+                            this.value;
+
+                        }
+                    );
+
+                }
+            );
+    }
+
+
+    updateNavigasi();
+}
+
+
+/* =========================================================
+   NAVIGASI
+   ========================================================= */
+
+function updateNavigasi() {
+
+    const sebelumnya =
+        document.getElementById(
+            "btnSebelumnya"
+        );
+
+    const berikutnya =
+        document.getElementById(
+            "btnBerikutnya"
+        );
+
+    const selesai =
+        document.getElementById(
+            "btnSelesai"
+        );
+
+
+    sebelumnya.disabled =
+        nomorSoalSekarang === 0;
+
+
+    if (
+        nomorSoalSekarang ===
+        daftarSoal.length - 1
+    ) {
+
+        berikutnya.classList
+            .add("hidden");
+
+        selesai.classList
+            .remove("hidden");
+
+    }
+
+    else {
+
+        berikutnya.classList
+            .remove("hidden");
+
+        selesai.classList
+            .add("hidden");
+    }
+}
+
+
+/* =========================================================
+   SEBELUMNYA
+   ========================================================= */
+
+document
+    .getElementById("btnSebelumnya")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (
+                nomorSoalSekarang > 0
+            ) {
+
+                nomorSoalSekarang--;
+
+                tampilkanSoal();
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+            }
+        }
+    );
+
+
+/* =========================================================
+   BERIKUTNYA
+   ========================================================= */
+
+document
+    .getElementById("btnBerikutnya")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (
+                nomorSoalSekarang <
+                daftarSoal.length - 1
+            ) {
+
+                nomorSoalSekarang++;
+
+                tampilkanSoal();
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+            }
+        }
+    );
+
+
+/* =========================================================
+   SELESAI
+   ========================================================= */
+
+document
+    .getElementById("btnSelesai")
+    .addEventListener(
+        "click",
+        function() {
+
+            const yakin =
+                confirm(
+                    "Apakah Bapak/Ibu yakin ingin menyelesaikan quiz?"
+                );
+
+
+            if (!yakin) {
+                return;
+            }
+
+
+            hitungNilai();
+        }
+    );
+
+
+/* =========================================================
+   HITUNG NILAI
+   ========================================================= */
+
+function hitungNilai() {
+
+    let totalSkor = 0;
+
+    let totalMaksimal = 0;
+
+
+    daftarSoal.forEach(
+        function(
+            soal,
+            index
+        ) {
+
+            const jawaban =
+                jawabanSiswa[index];
+
+
+            /* PG */
+
+            if (
+                soal.tipe ===
+                "pilihan_ganda"
+            ) {
+
+                totalMaksimal += 1;
+
+
+                if (
+                    jawaban ===
+                    soal.jawaban
+                ) {
+
+                    totalSkor += 1;
+                }
+            }
+
+
+            /* PG Kompleks */
+
+            else if (
+                soal.tipe ===
+                "pilihan_ganda_kompleks"
+            ) {
+
+                totalMaksimal += 1;
+
+
+                const benar =
+                    [...soal.jawaban]
+                    .sort();
+
+
+                const dipilih =
+                    Array.isArray(jawaban)
+                        ?
+                        [...jawaban].sort()
+                        :
+                        [];
+
+
+                if (
+                    JSON.stringify(
+                        benar
+                    ) ===
+                    JSON.stringify(
+                        dipilih
+                    )
+                ) {
+
+                    totalSkor += 1;
+                }
+            }
+
+
+            /* Benar Salah Kompleks */
+
+            else if (
+                soal.tipe ===
+                "benar_salah_kompleks"
+            ) {
+
+                totalMaksimal +=
+                    soal.pernyataan.length;
+
+
+                soal.pernyataan.forEach(
+                    function(
+                        item,
+                        indexPernyataan
+                    ) {
+
+                        if (
+                            jawaban &&
+                            jawaban[
+                                indexPernyataan
+                            ] ===
+                            item.jawaban
+                        ) {
+
+                            totalSkor += 1;
+                        }
+
+                    }
+                );
+            }
+
+        }
+    );
+
+
+    /* Nilai */
+
+    const nilai =
+        totalMaksimal > 0
+            ?
+            Math.round(
+                (
+                    totalSkor /
+                    totalMaksimal
+                ) *
+                100
+            )
+            :
+            0;
+
+
+    /* Status */
+
+    const tuntas =
+        nilai >= DATA_QUIZ.kkm;
+
+
+    /* Tampilkan */
+
+    document
+        .getElementById(
+            "nilaiAkhir"
+        )
+        .textContent =
+        nilai;
+
+
+    document
+        .getElementById(
+            "hasilNama"
+        )
+        .textContent =
+        dataSiswa.nama;
+
+
+    document
+        .getElementById(
+            "hasilSekolah"
+        )
+        .textContent =
+        dataSiswa.sekolah;
+
+
+    document
+        .getElementById(
+            "hasilKelas"
+        )
+        .textContent =
+        "Kelas " +
+        dataSiswa.kelas;
+
+
+    document
+        .getElementById(
+            "skorHasil"
+        )
+        .textContent =
+        totalSkor;
+
+
+    document
+        .getElementById(
+            "maksimalHasil"
+        )
+        .textContent =
+        totalMaksimal;
+
+
+    document
+        .getElementById(
+            "kkmHasil"
+        )
+        .textContent =
+        DATA_QUIZ.kkm;
+
+
+    const status =
+        document
+        .getElementById(
+            "statusHasil"
+        );
+
+
+    status.textContent =
+        tuntas
+            ? "TUNTAS"
+            : "BELUM TUNTAS";
+
+
+    status.className =
+        tuntas
+            ?
+            "badge bg-success fs-5 p-2 mb-4"
+            :
+            "badge bg-danger fs-5 p-2 mb-4";
+
+
+    /* Pindah halaman */
+
+    document
+        .getElementById(
+            "halamanQuiz"
+        )
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById(
+            "halamanHasil"
+        )
+        .classList
+        .remove("hidden");
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+}
+
+
+/* =========================================================
+   ULANGI QUIZ
+   ========================================================= */
+
+document
+    .getElementById("btnUlangi")
+    .addEventListener(
+        "click",
+        function() {
+
+            nomorSoalSekarang = 0;
+
+            jawabanSiswa = [];
+
+            document
+                .getElementById(
+                    "halamanHasil"
+                )
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById(
+                    "halamanIdentitas"
+                )
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("nama")
+                .value = dataSiswa.nama;
+
+
+            document
+                .getElementById("sekolah")
+                .value =
+                dataSiswa.sekolah;
+
+
+            document
+                .getElementById("kelas")
+                .value =
+                dataSiswa.kelas;
+
+
+            document
+                .getElementById("nomor")
+                .value =
+                dataSiswa.nomor;
+
+        }
+    );
+
+
+/* =========================================================
+   TOMBOL KEMBALI
+   ========================================================= */
+
+document
+    .getElementById("btnBeranda")
+    .addEventListener(
+        "click",
+        function() {
+
+            location.reload();
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
